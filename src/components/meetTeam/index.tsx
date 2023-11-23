@@ -1,4 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link'
+import { client } from '@/lib/sanity';
+import { urlForImage } from '@/lib/image';
+
+async function getData() {
+  const query = `*[_type == "component"]{
+      sections[6]
+    }`;
+  const data = await client.fetch(query);
+  return data;
+}
 
 const teamData = {
   mainHeading: "Meet our team",
@@ -56,26 +67,43 @@ const teamData = {
 };
 
 export default function MeetTeam() {
+  const [teamData, setData] = useState<any>({});
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const result = await getData();
+        setData(result[0]?.sections);
+        console.log(result);
+        
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <>
-      <div className="xl:mx-auto xl:container 2xl:px-20 px-6 py-20">
+      <div className="xl:mx-auto xl:container 2xl:px-20 px-6 lg:px-0 py-20">
         <h1 className="text-5xl font-semibold leading-10 text-gray-800 text-center">
-          {teamData.mainHeading}
+          {teamData.meetTeam}
         </h1>
-        <div className="flex flex-wrap items-stretch xl:justify-between justify-center mt-16 xl:gap-24 gap-4">
-          {teamData.members.map((member, index) => (
-            <div key={index} className="lg:w-96 w-80">
+        <div className="flex flex-wrap  justify-between  gap-5 mt-16">
+          {teamData.team && teamData.team.map((member:any, index:any) => (
+            <div key={index} className="lg:w-96 my-5 w-80">
               <img
-                src={member.image.src}
+                src={urlForImage(member.teamMemberImage.src).url()}
                 className="h-72 w-full object-cover object-center rounded-t-md"
-                alt={member.image.alt}
+                alt={member.teamMemberImage.alt}
               />
               <div className="bg-white shadow-md rounded-md py-4 text-center">
                 <p className="text-base font-medium leading-6 text-gray-600">
-                  {member.name}
+                  {member.teamMemberName}
                 </p>
                 <p className="text-base leading-6 mt-2 text-gray-800">
-                  {member.role}
+                  {member.designation}
                 </p>
               </div>
             </div>

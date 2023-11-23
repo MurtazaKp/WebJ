@@ -12,8 +12,14 @@ import statistics from './schemas/components/statistics'
 import testimonial from './schemas/components/testimonial'
 import contact from './schemas/components/contact'
 import services from './schemas/components/services'
+import blogDetails from './schemas/components/blogDetails'
+import header from './schemas/components/header'
+import footer from './schemas/components/footer'
+import terms from './schemas/terms'
+import pricing from './schemas/components/pricing'
+import partners from './schemas/components/partners'
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [components, about, blogs,cta,feature,hero,meetTeem,newsletter,statistics,testimonial,contact,services],
+  types: [components, about, blogs,cta,feature,hero,meetTeem,newsletter,statistics,testimonial,contact,services,blogDetails,header,footer,terms,pricing,partners],
 }

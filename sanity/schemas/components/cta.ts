@@ -6,6 +6,12 @@ export default defineType({
   type: 'object',
   fields: [
     defineField({
+      name: 'name',
+      title: 'name',
+      type: 'string',
+    }),
+    
+    defineField({
         name:"ctaTitle",
         title:'Cta Title',
         type:'string',

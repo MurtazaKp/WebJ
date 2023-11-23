@@ -4,7 +4,7 @@ import blockContent from './blockContent'
 export default defineType({
     name: 'terms',
     title: 'terms',
-    type: 'document',
+    type: 'object',
     fields: [
         defineField({
             name:"termsHeading",
@@ -20,10 +20,7 @@ export default defineType({
               defineArrayMember({
                 title: 'Block',
                 type: 'block',
-                // Styles let you define what blocks can be marked up as. The default
-                // set corresponds with HTML tags, but you can set any title or value
-                // you want, and decide how you want to deal with it where you want to
-                // use your content.
+              
                 styles: [
                   {title: 'Normal', value: 'normal'},
                   {title: 'H1', value: 'h1'},
@@ -33,15 +30,12 @@ export default defineType({
                   {title: 'Quote', value: 'blockquote'},
                 ],
                 lists: [{title: 'Bullet', value: 'bullet'}],
-                // Marks let you mark up inline text in the Portable Text Editor
                 marks: {
-                  // Decorators usually describe a single property – e.g. a typographic
-                  // preference or highlighting
+                
                   decorators: [
                     {title: 'Strong', value: 'strong'},
                     {title: 'Emphasis', value: 'em'},
                   ],
-                  // Annotations can be any object structure – e.g. a link or a footnote.
                   annotations: [
                     {
                       title: 'URL',

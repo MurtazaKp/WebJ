@@ -5,6 +5,12 @@ export default defineType({
   title: 'Contact',
   type: 'object',
   fields: [
+      defineField({
+        name: 'name',
+        title: 'name',
+        type: 'string',
+      }),
+      
     defineField({
         name:"contactHeading",
         title:'contactHeading',

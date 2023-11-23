@@ -14,7 +14,7 @@ export default defineType({
         of: [
           { type: 'about' },
           { type: 'hero' },
-          { type: 'blog' },
+          {type:'pricing'},
           { type: 'contact' },
           { type: 'cta' },
           { type: 'feature' },
@@ -23,6 +23,16 @@ export default defineType({
           { type: 'testimonial' },
           { type: 'services' },
           { type: 'newsletter' },
+          { type: 'blogDetails' },
+          { type: 'header' },
+          { type: 'footer' },
+          { type: 'terms' },
+          { type: 'partners' },
+
+
+
+
+
 
 
         ],

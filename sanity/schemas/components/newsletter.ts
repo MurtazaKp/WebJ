@@ -5,6 +5,11 @@ export default defineType({
   title: 'Newsletter',
   type: 'object',
   fields: [
+    defineField({
+      name: 'name',
+      title: 'name',
+      type: 'string',
+    }),
          // Newsletter
       defineField({
         name:"NewsletterTitle",
@@ -39,6 +44,24 @@ export default defineType({
               type: 'string',
             }),
           ],
+      }),
+
+      defineField({
+        name: 'newsletter',
+        title: 'Newsletter Image',
+        type: 'object',
+        fields:[
+          defineField({
+            name: 'src',
+            title: 'Source',
+            type: 'image',
+          }),
+          defineField({
+            name: 'alt',
+            title: 'Alt Text',
+            type: 'string',
+          }),
+        ]
       }),
   ],
 preview: {

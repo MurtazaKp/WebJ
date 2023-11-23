@@ -68,7 +68,7 @@ const TourServicesCard = () => {
     <div className='my-10'>
     <div> <h1 className='text-center text-5xl font-semibold my-10'>{serviceData.serviceHeading}</h1></div>
     <div className='grid grid-cols-1 md:grid-cols-2 px-5 lg:px-0 mb-5 lg:grid-cols-3 gap-10 container mx-auto'>
-      {serviceData.services.map((service:any, index:number) => (
+      {serviceData?.services && serviceData?.services.map((service:any, index:number) => (
         <div key={index} className="block rounded-lg bg-white p-6 border hover:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 ">
           <div className="mb-4">
             <h5 className="mb-2 text-2xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">

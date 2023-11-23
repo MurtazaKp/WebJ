@@ -1,5 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import { client } from '@/lib/sanity';
+import { urlForImage } from '@/lib/image';
+
+async function getData() {
+    const query = `*[_type == "component"]{
+        sections[10]
+      }`;
+    const data = await client.fetch(query);
+    return data;
+  }
 function Newsletter() {
+    const [newsletterData, setData] = useState<any>({});
+
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          const result = await getData();
+          setData(result[0]?.sections);
+          console.log(result);
+          
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+  
+      fetchData();
+    }, []);
+
     const newsletterProps = {
         title:"Wanderlust Weekly: Your Passport to Adventure",
         description: "Discover the world's most captivating destinations, travel tips, and exclusive offers in our Wanderlust Weekly newsletter. Get inspired to explore, one issue at a time.",
@@ -14,25 +41,25 @@ function Newsletter() {
             <div className="container sm:mx-auto">
                 <div className="block xl:flex justify-between xl:items-center lg:items-center md:flex">
                     <div className="w-11/12 xl:w-4/12 mx-auto xl:mx-0 md:w-5/12">
-                        <h1 className="text-gray-800 text-3xl font-extrabold mb-3 pt-12 xl:pt-0">{newsletterProps.title}</h1>
-                        <p className="text-lg text-gray-600 mb-6">{newsletterProps.description}</p>
+                        <h1 className="text-gray-800 text-3xl font-extrabold mb-3 pt-12 xl:pt-0">{newsletterData.NewsletterTitle}</h1>
+                        <p className="text-lg text-gray-600 mb-6">{newsletterData.newsletterDescription}</p>
                         <div className="flex w-full flex-wrap">
                             <div className="w-full">
                                 <div className="flex flex-col mb-3">
                                     <label className="text-base font-bold text-gray-800 mb-2" htmlFor="email">
-                                        {newsletterProps.cta.label}
+                                        {newsletterData.NewsletterInput && newsletterData.NewsletterInput.label}
                                     </label>
-                                    <input type="email" id="email" placeholder={newsletterProps.cta.placeholder} className="focus:outline-none focus:border-indigo-700 border-gray-300 border rounded-sm py-2 outline-none pl-2 pr-2" />
+                                    <input type="email" id="email" placeholder={newsletterData.NewsletterInput && newsletterData.NewsletterInput.placeholder} className="focus:outline-none focus:border-indigo-700 border-gray-300 border rounded-sm py-2 outline-none pl-2 pr-2" />
                                 </div>
                                 <button type="submit" className="focus:outline-none bg-indigo-700 hover:bg-indigo-600 text-white text-base w-full py-3 px-6 rounded">
-                                    {newsletterProps.cta.buttonText}
+                                    {newsletterData.NewsletterInput  && newsletterData.NewsletterInput.button}
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div className="w-11/12 xl:w-5/12 mx-auto xl:mx-0 mt-8 xl:mt-0 flex justify-end md:w-5/12 bg-indigo-100 relative py-20">
                         <div className="h-4/5 w-4/5">
-                            <img src="https://cdn.tuk.dev/assets/photo-1496430689199-7d6a8ebd3a2f.jfif" alt='image' className="h-full w-full overflow-hidden object-cover relative z-10 xl:-ml-56 lg:-ml-32 sm:-ml-20 -ml-12 md:-ml-20 rounded" />
+                       { newsletterData?.newsletter?.src &&  <img src={urlForImage(newsletterData.newsletter.src).url()} alt={newsletterData.newsletter.alt}  className="h-full w-full overflow-hidden object-cover relative z-10 xl:-ml-56 lg:-ml-32 sm:-ml-20 -ml-12 md:-ml-20 rounded" />}
                         </div>
                         <div className="absolute bottom-0 right-0 pb-2 pr-2 z-0">
                             <svg width={243} height={163} xmlns="http://www.w3.org/2000/svg">

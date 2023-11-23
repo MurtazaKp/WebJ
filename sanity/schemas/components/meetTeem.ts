@@ -5,6 +5,12 @@ export default defineType({
   title: 'MeetTeam',
   type: 'object',
   fields: [
+
+    defineField({
+      name: 'name',
+      title: 'name',
+      type: 'string',
+    }),
     
     defineField({
         name: 'meetTeam',
@@ -26,6 +32,13 @@ export default defineType({
                 title: 'Team Member Name',
                 type: 'string',
               }),
+
+              defineField({
+                name: 'designation',
+                title: 'designation',
+                type: 'string',
+              }),
+
               defineField({
                 name: 'teamMemberImage',
                 title: 'Avtatar Image',

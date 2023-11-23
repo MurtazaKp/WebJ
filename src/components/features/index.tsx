@@ -28,37 +28,37 @@ const Features = () => {
       fetchData();
     }, []);
 
-  const featureProps ={
-  featureTitle:"Tailor-made features",
-  features:[
+//   const featureProps ={
+//   featureTitle:"Tailor-made features",
+//   features:[
   
-      {
-          title:"Customized Itineraries",
-          description:"Craft personalized trips, your way, for unforgettable travel experiences."
-      },
-      {
-          title:"Local Expertise",
-          description:"Discover hidden treasures guided by expert locals who share their secrets."
-      },
-      {
-          title:"One-Stop Booking",
-          description:" Simplify travel arrangements—book flights, stays, and activities effortlessly."
-      },
-      {
-          title:"Safety First",
-          description:"Prioritize safety and well-being, ensuring secure and worry-free journeys"
-      },
-      {
-          title:"Traveler Reviews",
-          description:"  Learn from real experiences and contribute to informed decision-making."
-      },
-      {
-          title:"24/7 Booking",
-          description:" Round-the-clock assistance, ensuring support is there whenever needed."
-      },
+//       {
+//           title:"Customized Itineraries",
+//           description:"Craft personalized trips, your way, for unforgettable travel experiences."
+//       },
+//       {
+//           title:"Local Expertise",
+//           description:"Discover hidden treasures guided by expert locals who share their secrets."
+//       },
+//       {
+//           title:"One-Stop Booking",
+//           description:" Simplify travel arrangements—book flights, stays, and activities effortlessly."
+//       },
+//       {
+//           title:"Safety First",
+//           description:"Prioritize safety and well-being, ensuring secure and worry-free journeys"
+//       },
+//       {
+//           title:"Traveler Reviews",
+//           description:"  Learn from real experiences and contribute to informed decision-making."
+//       },
+//       {
+//           title:"24/7 Booking",
+//           description:" Round-the-clock assistance, ensuring support is there whenever needed."
+//       },
           
-  ]
-}
+//   ]
+// }
 
   return (
   <div className="dark:bg-gray-900">

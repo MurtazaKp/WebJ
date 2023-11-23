@@ -5,6 +5,12 @@ export default defineType({
   title: 'Hero',
   type: 'object',
   fields: [
+    defineField({
+      name: 'name',
+      title: 'name',
+      type: 'string',
+    }),
+
       defineField({
         name: 'heading',
         title: 'Heading',

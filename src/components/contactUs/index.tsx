@@ -95,7 +95,7 @@ const Contact = () => {
                     </div>
                     <p className="text-xs leading-3 text-gray-600 mt-4">{contactData.termsDescription}</p>
                     <div className="flex items-center justify-center w-full">
-                        <button className="mt-9 text-base font-semibold leading-none text-white py-4 px-10 bg-indigo-700 rounded hover:bg-indigo-600 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none">{contactData.button[0].label}</button>
+                        <button className="mt-9 text-base font-semibold leading-none text-white py-4 px-10 bg-indigo-700 rounded hover:bg-indigo-600 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none">{contactData.button && contactData.button[0].label}</button>
                     </div>
                 </div>
                 <div className='lg:w-6/12 p-2 lg:p-10'>

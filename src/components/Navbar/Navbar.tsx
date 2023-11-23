@@ -1,8 +1,34 @@
-import { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import Link from "next/link";
+import { client } from '@/lib/sanity';
+import { urlForImage } from '@/lib/image';
+
+async function getData() {
+    const query = `*[_type == "component"]{
+        sections[11]
+      }`;
+    const data = await client.fetch(query);
+    return data;
+  }
 
 export default function NavBar() {
     const [navbar, setNavbar] = useState(false);
+    const [headerData, setData] = useState<any>({});
+
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          const result = await getData();
+          setData(result[0]?.sections);
+          console.log(result);
+          
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+  
+      fetchData();
+    }, []);
 
     const NavBarProps = {
         logo: {
@@ -38,9 +64,9 @@ export default function NavBar() {
             <div className="justify-between px-4 lg:px-0 container mx-auto md:items-center md:flex">
                 <div>
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                        <Link href={NavBarProps.links[0].href}>
-                            <img src={NavBarProps.logo.src} alt="Logo" />
-                        </Link>
+                     {headerData.navigationLinks  &&  <Link href={headerData.navigationLinks[0].href}>
+                          {headerData.logo &&  <img  src={urlForImage(headerData.logo.src).url()} alt={headerData.logo.alt} />}
+                        </Link>}
                         <div className="md:hidden">
                             <button
                                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -86,7 +112,7 @@ export default function NavBar() {
                         }`}
                     >
                         <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                            {NavBarProps.links.map((link, index) => (
+                            {headerData.navigationLinks && headerData.navigationLinks.map((link:any, index:number) => (
                                 <li key={index} className="text-gray-600 hover:text-blue-600">
                                     <Link onClick={()=>{setNavbar(!NavBar)}} href={link.href}>{link.label}</Link>
                                 </li>

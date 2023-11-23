@@ -1,6 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import Link from "next/link";
+import { client } from '@/lib/sanity';
+
+
+async function getData() {
+    const query = `*[_type == "component"]{
+        sections[12]
+      }`;
+    const data = await client.fetch(query);
+    return data;
+  }
 
 const Footer = () => {
+    const [footerData, setData] = useState<any>({});
+
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          const result = await getData();
+          setData(result[0]?.sections);
+          console.log(result);
+          
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+  
+      fetchData();
+    }, []);
+
     const currentYear = new Date().getFullYear();
     const FooterProps = {
         socialLinks: [
@@ -26,12 +54,12 @@ const Footer = () => {
     <section className="bg-white">
     <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
         <nav className="flex flex-wrap justify-center -mx-5 -my-2">
-            {FooterProps.navigationLinks.map((link,index)=>{
+            {footerData.navigationLinks && footerData.navigationLinks.map((link:any,index:number)=>{
                 return(
                     <div className="px-5 py-2" key={index}>
-                <a href={link.href} className="text-base leading-6 text-gray-500 hover:text-gray-900">
+                <Link href={link.href} className="text-base leading-6 text-gray-500 hover:text-gray-900">
                     {link.label}
-                </a>
+                </Link>
             </div>
                 )
             })}
@@ -71,7 +99,7 @@ const Footer = () => {
             </a>
         </div>
         <p className="mt-8 text-base leading-6 text-center text-gray-400">
-             @ {currentYear} {FooterProps.companyInfo.name}.
+             @ {currentYear} {footerData.copyright}.
         </p>
     </div>
 </section>

@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import { client } from '@/lib/sanity';
+import { urlForImage } from '@/lib/image';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+async function getData() {
+  const query = `*[_type == "component"]{
+      sections[8]
+    }`;
+  const data = await client.fetch(query);
+  return data;
+}
+
+  
+
 
 const testimonialData = [
   {
@@ -25,6 +38,22 @@ const testimonialData = [
 ];
 
 export default function Testimonial() {
+  const [testimonialData, setData] = useState<any>({});
+
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          const result = await getData();
+          setData(result[0]?.sections);
+          console.log(result);
+          
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+  
+      fetchData();
+    }, []);
     const setting ={
         dots: true,
         infinite: true,
@@ -63,13 +92,13 @@ export default function Testimonial() {
     <div className="py-16 bg-gray-50">
     <div className="container mx-auto px-4 flex flex-col lg:items-center ">
       <div className="mb-14 xl:mb-0">
-        <h1 className="text-2xl md:text-4xl xl:text-5xl font-semibold leading-10 text-gray-800 mb-10 pr-16 lg:pr-0">
+        <h1 className="text-3xl md:text-4xl xl:text-5xl text-center font-semibold leading-10 text-gray-800 mb-10  ">
           Our customers love what we do
         </h1>
       </div>
       <div className="w-full">
         <Slider {...setting}>
-          {testimonialData.map((testimonial, index) => (
+          {testimonialData.testimonials && testimonialData.testimonials.map((testimonial:any, index:number) => (
             <div key={index} className="p-5">
               <div className="bg-white shadow rounded-2xl p-10 xl:p-8" style={{ height: "100%" }}>
                 <img
@@ -79,17 +108,19 @@ export default function Testimonial() {
                 <div className=" pt-4 flex flex-col gap-6 justify-center items-center sm:justify-start gap-6 flex-grow" style={{ height: "100%" }}>
                   <div className=" text-center">
                     <p className="xl:text-xl xl:leading-loose text-gray-600">
-                      {testimonial.content}
+                      {testimonial.review}
                     </p>
                     <p className="mt-4 text-base font-semibold leading-none text-gray-800">
-                      {testimonial.author}
+                      {testimonial.reviewerName}
                     </p>
                   </div>
-                  <img
-                    src={testimonial.avatar}
-                    alt={`Display Avatar of ${testimonial.author}`}
+                  { testimonial.AvatarImage &&
+                  <img 
+                   src={urlForImage(testimonial.AvatarImage.src).url()}
+                  
+                    alt={`Display Avatar of ${testimonial.AvatarImage.alt}`}
                     role="img"
-                  />
+                  />}
                 </div>
               </div>
             </div>

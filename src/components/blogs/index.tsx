@@ -4,15 +4,20 @@ import { client } from '@/lib/sanity';
 import { urlForImage } from '@/lib/image';
 
 
+
+// 
 async function getData() {
-    const query = `*[_type == "component"]{
-        sections[2]
-      }`;
+    const query = `*[_type == "post"]`;
     const data = await client.fetch(query);
     return data;
   }
 
+  
+
 function Blogs() {
+
+
+ 
     const BlogPropes = {
        title:"Blogs",
        blogs: [   
@@ -57,8 +62,8 @@ function Blogs() {
       async function fetchData() {
         try {
           const result = await getData();
-          setData(result[0]?.sections);
-          console.log(result);
+          setData(result);
+          console.log(result,'here usasasdasd');
           
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -67,25 +72,28 @@ function Blogs() {
   
       fetchData();
     }, []);
+    
 
-    console.log(blogData,"ddd");
+    console.log(blogData[0],"dfdfdf")
+    
+    
     
     return (
         <>
             <div id="blog" className="bg-gray-100 px-4 xl:px-0 py-12">
                 <div className="mx-auto container">
-                    <h1 className="text-center text-3xl lg:text-5xl tracking-wider text-gray-900">{blogData.blogHeading}</h1>
+                    <h1 className="text-center text-3xl lg:text-5xl tracking-wider text-gray-900">Lastest From Our Blogs</h1>
                     <div className="mt-12 lg:mt-24 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
-                    {blogData.blogs && blogData.blogs.map((blog:any,index:number)=>{
+                    {blogData && Array.isArray(blogData) && blogData.map((blog:any,index:number)=>{
                                         return(
-                        <Link className="flex" key={index} href={blog.href} >
+                        <Link className="flex" key={index} href={blog.slug.current} >
                             
                                 <div className="flex">
                                  
                                             <div  className=" flex">
                                         <div className="flex  ">
                                             <span className="bg-white rounded-bl-3xl rounded-br-3xl">
-                                            <img className="w-full" loading="lazy" src={blog?.BlogImage?.src && urlForImage(blog?.BlogImage?.src).url()} alt={blog.alt} />
+                                            <img className="w-full" loading="lazy" src={blog.BlogImage?.src && urlForImage(blog.BlogImage?.src).url()} alt={blog.alt} />
                                             <div className="py-2 px-4 w-full flex justify-between bg-indigo-700">
                                                 <p className="text-sm text-white font-semibold tracking-wide">{blog.author}</p>
                                                 <p className="text-sm text-white font-semibold tracking-wide">{blog.date}</p>
@@ -115,6 +123,13 @@ function Blogs() {
             
         </>
     );
-}
+};
+
+
+
+
+
+
+
 
 export default Blogs;

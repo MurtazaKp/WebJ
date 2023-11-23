@@ -39,36 +39,36 @@ const Hero = () => {
     
     
   
-    const HeroProps = {
-        heading:"Discover Your Next Adventure Explore the World with Wanderlust Adventures",
-        buttonOne:{
-            label:"Get Started",
-            href:"/contact",
-            target:"_blank"
-        },
-        buttonTwo:{
-            label:"Learn More",
-            href:"/services",
-            target:"_blank"
-        },
-        heroImage:[
-        {
-            src:"/assets/images/bannerOne.jpg",
-            alt:"Hero Image"
-        },
-        {
-            src:"/assets/images/bannerTwo.jpg",
-            alt:"Hero Image"
-        },
-        {
-            src:"/assets/images/bannerThree.jpg",
-            alt:"Hero Image"
-        },
-        {
-            src:"/assets/images/bannerFour.jpg",
-            alt:"Hero Image"
-        }]
-    }
+    // const HeroProps = {
+    //     heading:"Discover Your Next Adventure Explore the World with Wanderlust Adventures",
+    //     buttonOne:{
+    //         label:"Get Started",
+    //         href:"/contact",
+    //         target:"_blank"
+    //     },
+    //     buttonTwo:{
+    //         label:"Learn More",
+    //         href:"/services",
+    //         target:"_blank"
+    //     },
+    //     heroImage:[
+    //     {
+    //         src:"/assets/images/bannerOne.jpg",
+    //         alt:"Hero Image"
+    //     },
+    //     {
+    //         src:"/assets/images/bannerTwo.jpg",
+    //         alt:"Hero Image"
+    //     },
+    //     {
+    //         src:"/assets/images/bannerThree.jpg",
+    //         alt:"Hero Image"
+    //     },
+    //     {
+    //         src:"/assets/images/bannerFour.jpg",
+    //         alt:"Hero Image"
+    //     }]
+    // }
 
     const settings = {
         dots: true,
@@ -89,7 +89,7 @@ const Hero = () => {
                             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center text-white font-bold leading-tight">{heroData && heroData?.heading}</h1>
                         </div>
                         <div className="flex justify-center gap-10 items-center mb-10 sm:mb-20">
-                            {heroData?.button && heroData?.button.map((btn:any,index:number)=>{
+                            {heroData.button && heroData?.button.map((btn:any,index:number)=>{
                                 return(
                           <Link key={index} href={btn.href} target={btn.target}><button className="hover:text-white hover:bg-transparent lg:text-xl hover:border-white border bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-indigo-700	focus:ring-white rounded text-indigo-700 px-4 sm:px-8 py-1 sm:py-3 text-sm">{btn.label}</button></Link>  
 

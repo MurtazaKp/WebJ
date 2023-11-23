@@ -6,6 +6,8 @@ export default defineType({
     title: 'Blogs',
     type: 'document',
     fields: [
+
+    
   // blogs
   defineField({
     name: 'blogHeading',
@@ -88,10 +90,5 @@ export default defineType({
 
   
 ],
-preview: {
-    select: {
-      title: 'name',
-      media: 'image',
-    },
-  },
+
 })

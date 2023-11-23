@@ -6,6 +6,12 @@ export default defineType({
   type: 'object',
   fields: [
     defineField({
+      name: 'name',
+      title: 'name',
+      type: 'string',
+    }),
+    
+    defineField({
         name:"serviceHeading",
         title:'service Heading',
         type:'string',
@@ -36,4 +42,27 @@ export default defineType({
           }
         ],   
       }),
+
+      defineField({
+        name:"button",
+        title:"Service Button",
+        type:"object",
+        fields:[
+            defineField({
+              name:"href",
+              title:'Href',
+              type:'string'
+            }),
+            defineField({
+              name:"target",
+              title:'Target',
+              type:'string'
+            }),
+            defineField({
+              name:"label",
+              title:'label',
+              type:'string'
+            }),
+        ]
+      })
   ]})
