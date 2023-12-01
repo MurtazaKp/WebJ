@@ -80,7 +80,7 @@ function BlogListing() {
             <div className="w-full lg:flex flex-col">
            
             {Array.isArray(blogData) && blogData.map((blog: any, index: number) => {
-              console.log("Hey")
+             
                 return (
                     <div className="" key={index}>
                         <div className="lg:flex items-start mb-16">

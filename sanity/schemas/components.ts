@@ -28,6 +28,28 @@ export default defineType({
           { type: 'footer' },
           { type: 'terms' },
           { type: 'partners' },
+          { type: 'cookie' },
+          { type: 'error404' },
+          { type: 'faq' },
+          { type: 'videoBanner' },
+          { type: 'trivia' },
+          { type: 'privacy' },
+          { type: 'security' },
+          { type: 'imageGallary' },
+
+
+         
+
+
+
+          
+
+          
+
+
+          
+
+
 
 
 

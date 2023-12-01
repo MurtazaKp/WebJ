@@ -30,7 +30,7 @@ export default function Pricing() {
       fetchData();
     }, []);
 
-    console.log(pricingData);
+
     
     
     return (
@@ -42,7 +42,8 @@ export default function Pricing() {
                         <h1 role="heading" className="md:text-5xl text-3xl font-bold leading-10 mt-3 text-gray-800">
                            {pricingData.heading}
                         </h1>
-                        <p role="contentinfo" className="text-base leading-5 mt-5 w-10/12 text-gray-600">
+                        <p role="contentinfo"
+                         className="text-base leading-5 mt-5 w-10/12 text-gray-600">
                             {pricingData.mainDescription}
                         </p>
                         

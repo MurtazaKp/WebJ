@@ -1,45 +1,53 @@
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: 'testimonial',
-  title: 'Testimonial',
+  name: 'imageGallary',
+  title: 'Image Gallary',
   type: 'object',
   fields: [
+
     defineField({
       name: 'name',
       title: 'name',
       type: 'string',
     }),
-
-
     
     defineField({
-        name: 'testimonialHeading',
-        title: 'Testimonial Heading',
+        name: 'mainTitle',
+        title: 'Main Title',
         type: 'string',
       }),
 
       defineField({
-        name:"testimonials",
-        title:"testimonials",
+        name:"gallary",
+        title:"Gallary",
         type: 'array',
         of:[
           {
             type:"object",
             fields: [
+              
               defineField({
-                name: 'review',
-                title: 'review',
-                type: 'string',
+                name: 'id',
+                title: 'id',
+                type: 'number',
               }),
+
               defineField({
-                name: 'reviewerName',
-                title: 'Reviewer Name',
-                type: 'string',
+                name: 'width',
+                title: 'width',
+                type: 'number',
               }),
+
               defineField({
-                name: 'AvatarImage',
-                title: 'Avtatar Image',
+                name: 'height',
+                title: 'height',
+                type: 'number',
+              }),
+
+              defineField({
+                name: 'gallaryImage',
+                title: 'Gallary Image',
                 type: 'object',
                 fields:[
                   defineField({

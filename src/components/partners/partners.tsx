@@ -45,7 +45,7 @@ function Index() {
       fetchData();
     }, []);
 
-    console.log(partnersData,"======here");
+  
   return (
     <div className="container mx-auto pt-16">
       <div className="w-11/12 xl:w-2/3 lg:w-2/3 md:w-2/3 mx-auto sm:mb-10 mb-16">

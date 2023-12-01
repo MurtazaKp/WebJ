@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { client } from '@/lib/sanity';
 import { urlForImage } from '@/lib/image';
+import { FeatureSvg, FeatureSvgFive, FeatureSvgFour, FeatureSvgSix, FeatureSvgThree, FeatureSvgTwo } from '../svg';
 
 async function getData() {
   const query = `*[_type == "component"]{
@@ -60,6 +61,8 @@ const Features = () => {
 //   ]
 // }
 
+const SvgData = [FeatureSvg,FeatureSvgTwo,FeatureSvgThree,FeatureSvgFour,FeatureSvgFive,FeatureSvgSix]
+
   return (
   <div className="dark:bg-gray-900">
    <section className="mx-auto container py-20 ">
@@ -68,15 +71,12 @@ const Features = () => {
          <h1>{featureData.featureTitle}</h1>
        </div>
        <div className="pt-24 grid lg:grid-cols-3 md:grid-cols-2 justify-center items-center xl:gap-y-16 gap-y-20 gap-x-16 lg:gap-x-20 xl:gap-x-0 lg:px-10 xl:px-0">
-        {featureData.features && featureData.features.map((feature:any)=>{
+        {featureData.features && featureData.features.map((feature:any,index:any)=>{
+           const SvgComponent = SvgData[index];
           return(
             <div key={feature.title} className="cursor-pointer hover:shadow py-6 xl:px-4 rounded xl:w-96 w-60 flex justify-center items-center flex-col">
             <div className="mb-6">
-              <svg width={32} height={32} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M24 13.3333H32L28 8L24 13.3333ZM24 18.6667H32L28 24L24 18.6667Z" fill="#C7D2FE" />
-                <path d="M1.33333 0H9.33333V32H1.33333C0.979711 32 0.640572 31.8595 0.390523 31.6095C0.140475 31.3594 0 31.0203 0 30.6667V1.33333C0 0.979711 0.140475 0.640572 0.390523 0.390523C0.640572 0.140475 0.979711 0 1.33333 0Z" fill="#818CF8" />
-                <path d="M12 0H20C20.3536 0 20.6928 0.140475 20.9428 0.390523C21.1929 0.640572 21.3333 0.979711 21.3333 1.33333V30.6667C21.3333 31.0203 21.1929 31.3594 20.9428 31.6095C20.6928 31.8595 20.3536 32 20 32H12V0Z" fill="#6366F1" />
-              </svg>
+              <SvgComponent/>
             </div>
             <div className="text-gray-800 dark:text-white text-2xl font-semibold text-center">
               <h2>{feature.title}</h2>

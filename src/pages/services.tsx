@@ -1,3 +1,4 @@
+import FAQList from '@/components/Faq'
 import Newsletter from '@/components/Newsletter'
 import Statistics from '@/components/Statsistics'
 import Blogs from '@/components/blogs'
@@ -11,6 +12,7 @@ const services = () => {
      <Statistics/>
     <TourServicesCard/>
     <Testimonial/>
+    <FAQList/>
     <Newsletter/>
     <Blogs/>
    </div>

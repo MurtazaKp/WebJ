@@ -63,7 +63,7 @@ function Blogs() {
         try {
           const result = await getData();
           setData(result);
-          console.log(result,'here usasasdasd');
+       
           
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -74,7 +74,6 @@ function Blogs() {
     }, []);
     
 
-    console.log(blogData[0],"dfdfdf")
     
     
     

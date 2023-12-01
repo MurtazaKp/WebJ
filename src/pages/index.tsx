@@ -10,6 +10,15 @@ import Newsletter from "@/components/Newsletter";
 import { client } from "@/lib/sanity";
 import Pricing from "@/components/theme/pricing";
 import Partners from "@/components/partners/partners";
+import Cookie from "@/components/cookie";
+import VideoBannerComponent from "@/components/videoBanner";
+import TextBanner from "@/components/facts";
+import CookieComponent from "@/components/cubytsCookies";
+import ImageGallary from "@/components/imageGallary";
+import ImageGallaryTwo from "@/components/imageGallaryTwo";
+
+
+
 
 // async function getData() {
 //   const query = `*[_type == "home"]`;
@@ -47,8 +56,14 @@ export default function Index({}) {
       <Statistics/>
       <Pricing/>
       <Testimonial/>
+      <VideoBannerComponent/>
+      <TextBanner/>
+      <ImageGallaryTwo/>
       <Partners/>
       <Blogs/>
+      <Cookie/>
+    
+      
     
       {/* 
         <HeroSection/>
