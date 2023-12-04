@@ -17,7 +17,7 @@ const data = {
     "Performance": {
       key: "value",
       maxRequestsPerSecond: 1000,
-      analyticsEnabled: "dsdasd"
+      analyticsEnabled: "true"
     },
     "Functional": {
       key: "value",
@@ -45,7 +45,7 @@ const Cookie = () => {
     const [isSetting , setIsSetting] = useState(false)
     const [isCookie , setIsCookie] = useState(true)
     const [enabledSettings, setEnabledSettings] = useState(Array(settings.length).fill(false));
-    const [checkedSettings, setCheckedSettings] = useState([]);
+    const [checkedSettings, setCheckedSettings] = useState<any>([]);
     const [cookieData, setData] = useState<any>({});
 // fetching data 
     useEffect(() => {
@@ -86,10 +86,10 @@ const Cookie = () => {
 // useEffect(() => {
     const acceptAllCookies = () => {
         Object.keys(data).forEach(category => {
-          const categoryData = data[category];
+          const categoryData = data[category as keyof typeof data];
          
           Object.keys(categoryData).forEach(key => {
-            const value = categoryData[key];
+            const value = categoryData[key as keyof typeof categoryData];
         
         setCookie(key, value);
           });
@@ -104,11 +104,10 @@ const Cookie = () => {
         setCookie('isCookiesAccepted', true);
 
         checkedSettings.map((value:any)=>{
-            const performanceData = data[value];
-
-        
+            const performanceData = data[value as keyof typeof data];
             Object.entries(performanceData).forEach(([key, value]) => {
-             setCookie(key,value)
+                setCookie(key, value);
+           
               // Retrieve the cookie and log the value
               
            
