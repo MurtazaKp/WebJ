@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  scrollbar-gutter:auto;
+}
+
 h1,
   .heading-primary {
     @apply text-2xl font-bold leading-relaxed text-gray-900 lg:text-4xl;
@@ -33,6 +37,8 @@ h1,
     justify-content: center;
     
 }
+
+
 
 .close-menu,
 .open-menu {
@@ -207,4 +213,5 @@ video{
   .react-photo-album--column .photo-frame.insertAfter:after {
     bottom: -17px;
   }
+
 

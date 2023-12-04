@@ -1,5 +1,12 @@
 import * as React from "react";
 import { Photo, PhotoAlbum, RenderPhotoProps } from "react-photo-album";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 import clsx from "clsx";
 import {
   closestCenter,
@@ -17,6 +24,7 @@ import {
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable } from "@dnd-kit/sortable";
 
 import photoSet from "./photos";
+import { useState } from "react";
 
 
 interface SortablePhoto extends Photo {
@@ -101,6 +109,8 @@ export default function ImageGallaryTwo() {
       id: photo.key || photo.src,
     })),
   );
+  const [index, setIndex] = useState(-1);
+
   const renderedPhotos = React.useRef<{ [key: string]: SortablePhotoProps }>({});
   const [activeId, setActiveId] = React.useState<UniqueIdentifier>();
   const activeIndex = activeId ? photos.findIndex((photo) => photo.id === activeId) : undefined;
@@ -147,7 +157,15 @@ export default function ImageGallaryTwo() {
     >
       <SortableContext items={photos}>
         <div style={{ margin: 30 }}>
-          <PhotoAlbum photos={photos} layout="rows" spacing={15} padding={0} renderPhoto={renderPhoto} />
+          <PhotoAlbum photos={photos} layout="rows" spacing={15} padding={0} renderPhoto={renderPhoto}  onClick={({ index }) => setIndex(index)}  />
+          <Lightbox
+        slides={photos}
+        open={index >= 0}
+        index={index}
+        close={() => setIndex(-1)}
+        // enable optional lightbox plugins
+        plugins={[Fullscreen, Slideshow, Thumbnails, Zoom]}
+      />
         </div>
       </SortableContext>
       <DragOverlay>{activeId && <PhotoFrame overlay {...renderedPhotos.current[activeId]} />}</DragOverlay>
