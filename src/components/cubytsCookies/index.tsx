@@ -32,10 +32,10 @@ const CookieComponent = () => {
 
   const acceptAllCookies = () => {
     Object.keys(data).forEach(category => {
-      const categoryData = data[category];
+      const categoryData = data[category as keyof typeof data];
      
       Object.keys(categoryData).forEach(key => {
-        const value = categoryData[key];
+        const value = categoryData[key as keyof typeof categoryData];
     
     setCookie(key, value);
       });
