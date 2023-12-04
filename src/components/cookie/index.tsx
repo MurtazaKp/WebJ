@@ -127,6 +127,7 @@ const Cookie = () => {
 
     const handleClose = () => {
         setCookieData(false);
+        setCookie('isCookiesAccepted', true);
     
     };
 
@@ -223,7 +224,7 @@ const Cookie = () => {
                         <button onClick={acceptAllCookies} className="w-full sm:w-auto mt-7 sm:mt-5 text-base leading-4 text-center text-white py-2 px-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 bg-gray-800 hover:bg-black ">{cookieData.buttons && cookieData.buttons[0].button}</button>
                         <button onClick={handleCustomSetting} className="w-full sm:w-auto mt-7 sm:mt-5 text-base leading-4 text-center text-white py-2 px-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 bg-gray-800 hover:bg-black ">{cookieData.buttons && cookieData.buttons[1].button}</button>
                         </span>
-                        <a href="javascript:void(0)" className="mt-6 text-base leading-none focus:outline-none hover:border-gray-800 focus:border-gray-800 border-b  border-transparent text-center text-gray-800">
+                        <a onClick={handleClose} href="javascript:void(0)" className="mt-6 text-base leading-none focus:outline-none hover:border-gray-800 focus:border-gray-800 border-b  border-transparent text-center text-gray-800">
                         {cookieData.buttons && cookieData.buttons[2].button}
                         </a>
                         <button  onClick={handleClose} className=" absolute top-8 right-8 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800" aria-label="close">

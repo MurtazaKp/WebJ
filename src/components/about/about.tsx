@@ -31,7 +31,7 @@ const About = () => {
   return (
     <div>
       {data && (
-        <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4">
+        <div className="2xl:container lg:mx-auto lg:py-16 container md:py-12 py-9 mx-4">
           <div className="lg:w-10/12 w-full">
             <p className="font-normal text-sm leading-3 text-indigo-700 hover:text-indigo-800 cursor-pointer">
               {data.subheading}

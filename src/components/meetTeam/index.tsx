@@ -92,7 +92,7 @@ export default function MeetTeam() {
         </h1>
         <div className="flex flex-wrap  justify-between  gap-5 mt-16">
           {teamData.team && teamData.team.map((member:any, index:any) => (
-            <div key={index} className="lg:w-96 my-5 w-80">
+            <div key={index} className="lg:w-96 my-5 w-80 mx-auto lg:mx-0">
               <img
                 src={urlForImage(member.teamMemberImage.src).url()}
                 className="h-72 w-full object-cover object-center rounded-t-md"
